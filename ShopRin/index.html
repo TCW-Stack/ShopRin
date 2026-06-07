@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopRin – Nigeria's #1 Marketplace</title>
+<meta name="description" content="ShopRin – Phones, Fashion, Electronics, Beauty, Food and more from top brands delivered across Nigeria.">
+<link rel="icon" type="image/png" href="ShopRin icon.png">
+<link rel="apple-touch-icon" href="ShopRin icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toasts"></div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="container nw">
+    <div class="logo" onclick="gs('hero')">Shop<span>Rin</span></div>
+    <ul class="nl">
+      <li><a href="#" onclick="gs('hero')" class="act">Home</a></li>
+      <li><a href="#" onclick="gs('shop')">Shop</a></li>
+      <li><a href="#" onclick="gs('cats')">Categories</a></li>
+      <li><a href="#" onclick="gs('vendors')">Vendors</a></li>
+      <li><a href="#" onclick="gs('upsect')">Sell</a></li>
+    </ul>
+    <div class="ns">
+      <span class="si">🔍</span>
+      <input type="text" placeholder="Search phones, Nike, IKEA…" id="nsi" oninput="hs(this.value)" onkeydown="if(event.key==='Enter')openSR(this.value)">
+    </div>
+    <div class="nr">
+      <button class="bico" id="tbtn" onclick="tgTheme()" title="Theme">🌙</button>
+      <button class="bico nd-wrap" onclick="showN()" title="Notifications">🔔<span class="ndot" id="ndot"></span></button>
+      <button class="bico" onclick="openWL()" title="Wishlist">❤️</button>
+      <button class="bico cw" onclick="openCart()" title="Cart">🛒<span class="cdot" id="cdot">0</span></button>
+      <button class="btn btn-p btn-sm" onclick="openAuth('login')">Sign In</button>
+      <button class="mb" onclick="tgMob()">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="mn" id="mn">
+  <a href="#" onclick="gs('hero');cm()">Home</a>
+  <a href="#" onclick="gs('shop');cm()">Shop</a>
+  <a href="#" onclick="gs('cats');cm()">Categories</a>
+  <a href="#" onclick="gs('vendors');cm()">Vendors</a>
+  <a href="#" onclick="gs('upsect');cm()">Sell on ShopRin</a>
+  <a href="#" onclick="openAuth('login');cm()">Sign In / Register</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hg hg1"></div>
+  <div class="hg hg2"></div>
+  <div class="container">
+    <div class="hgrid">
+      <div>
+        <div class="hey fup">✦ Nigeria's #1 Shopping Destination</div>
+        <h1 class="ht fup d1">Shop <em>Smarter</em>,<br>Live <em>Better</em></h1>
+        <p class="hs fup d2">From the latest iPhones to handwoven Ankara — thousands of brands, thousands of vendors, one beautiful place. Real deals. Fast delivery. Guaranteed quality.</p>
+        <div class="hcta fup d3">
+          <button class="btn btn-p" onclick="gs('shop')">🛍 Shop Now</button>
+          <button class="btn btn-o" onclick="gs('upsect')">Sell on ShopRin</button>
+        </div>
+        <div class="hstats fup d4">
+          <div><div class="hsn">100K+</div><div class="hsl">Products</div></div>
+          <div><div class="hsn">4K+</div><div class="hsl">Vendors</div></div>
+          <div><div class="hsn">4.9★</div><div class="hsl">Rating</div></div>
+          <div><div class="hsn">200K+</div><div class="hsl">Happy Buyers</div></div>
+        </div>
+      </div>
+      <div class="hiv fup d2">
+        <div class="him">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700&q=82" alt="Fashion Shopping">
+        </div>
+        <div class="hf hf1">
+          <span class="hfi">🔥</span>
+          <div><div class="hfl">Today's Flash Sale</div><div class="hfv">Up to 65% Off</div></div>
+        </div>
+        <div class="hf hf2">
+          <span class="hfi">📦</span>
+          <div><div class="hfl">Free Delivery</div><div class="hfv">Orders ₦15,000+</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div id="brands"><div class="container"><div class="bstrip" id="bstrip"></div></div></div>
+
+<!-- CATEGORIES -->
+<section id="cats">
+  <div class="container">
+    <div class="shead">
+      <div class="srow">
+        <div>
+          <div class="st">Explore</div>
+          <h2 class="sh2">Shop by Category</h2>
+          <p class="ssub">Tap any category to browse products from top brands.</p>
+        </div>
+        <button class="btn btn-o" onclick="gs('shop')">All Products →</button>
+      </div>
+    </div>
+    <div class="csgrid" id="csgrid"></div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" style="background:var(--bg2)">
+  <div class="container">
+    <div class="shead">
+      <div class="srow">
+        <div><div class="st">All Products</div><h2 class="sh2">Product Catalog</h2></div>
+        <select class="ssel" id="ssel" onchange="doSort(this.value)">
+          <option value="">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+          <option value="newest">Newest First</option>
+        </select>
+      </div>
+    </div>
+    <div class="tabrow" id="tabrow"></div>
+    <div class="toolbar"><span class="tcnt" id="tcnt">Loading…</span></div>
+    <div class="pgrid" id="pgrid"></div>
+    <div class="pgn" id="pgn"></div>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<section style="padding:0 0 68px;background:var(--bg2)">
+  <div class="container">
+    <div class="pw">
+      <div class="pb3">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1400&q=80" alt="Sale">
+        <div class="pb3-ov"></div>
+      </div>
+      <div class="pc3">
+        <h2>🔥 Biggest Sale — 65% Off Everything</h2>
+        <p>Phones, fashion, appliances and more. Limited stock. Don't miss out.</p>
+        <button class="btn" onclick="gs('shop')">Shop the Sale Now →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELL / UPLOAD -->
+<section id="upsect">
+  <div class="container">
+    <div class="shead" style="text-align:center;max-width:600px;margin:0 auto 36px">
+      <div class="st" style="justify-content:center">Vendors and Sellers</div>
+      <h2 class="sh2">List Your Products on ShopRin</h2>
+      <p class="ssub" style="margin:0 auto">Join 4,000+ vendors already selling to 200,000+ buyers across Nigeria. Free to list.</p>
+    </div>
+    <div class="up-inner">
+      <div>
+        <div class="up-title">Add a New Product</div>
+        <p class="up-sub">Fill in the details below. Your product goes live after review. Supports all categories.</p>
+        <div class="upform">
+          <div class="up-grid">
+            <div class="fg2" style="margin:0"><label>Product Name *</label><input type="text" id="up-name" placeholder="e.g. iPhone 15 Pro Max 256GB"></div>
+            <div class="fg2" style="margin:0"><label>Brand *</label><input type="text" id="up-brand" placeholder="e.g. Apple"></div>
+          </div>
+          <div class="fg2" style="margin:0">
+            <label>Category *</label>
+            <select id="up-cat">
+              <option value="">Select category…</option>
+              <option value="phones">Phones</option>
+              <option value="laptops">Laptops</option>
+              <option value="fashion">Fashion</option>
+              <option value="shoes">Shoes</option>
+              <option value="beauty">Beauty</option>
+              <option value="home">Home and Living</option>
+              <option value="appliances">Appliances</option>
+              <option value="sports">Sports</option>
+              <option value="food">Food and Drinks</option>
+              <option value="books">Books</option>
+              <option value="gaming">Gaming</option>
+              <option value="kids">Kids and Toys</option>
+              <option value="jewelry">Jewelry</option>
+              <option value="health">Health</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="up-grid">
+            <div class="fg2" style="margin:0"><label>Price (₦) *</label><input type="number" id="up-price" placeholder="e.g. 45000"></div>
+            <div class="fg2" style="margin:0"><label>Old Price (₦)</label><input type="number" id="up-old" placeholder="e.g. 60000"></div>
+          </div>
+          <div class="fg2" style="margin:0"><label>Description *</label><textarea id="up-desc" rows="3" placeholder="Describe your product condition, specs, what's included…"></textarea></div>
+          <div class="fg2" style="margin:0"><label>Vendor / Store Name *</label><input type="text" id="up-vendor" placeholder="e.g. Lagos Tech Store"></div>
+          <div class="fg2" style="margin:0"><label>Product Image URL (optional)</label><input type="url" id="up-img" placeholder="https://example.com/product-image.jpg"></div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-p" style="flex:1" onclick="submitProduct()">🚀 List Product</button>
+            <button class="btn btn-o" onclick="openAuth('register')">Create Vendor Account</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="up-tips">
+          <div class="up-tips-title">📋 Listing Tips</div>
+          <ul>
+            <li>✅ Use a clear, high-quality product image</li>
+            <li>✅ Include brand name for better search visibility</li>
+            <li>✅ Mention warranty, condition and what's in the box</li>
+            <li>✅ Set a competitive price</li>
+            <li>✅ Add original price to highlight discount savings</li>
+            <li>✅ Respond to buyer questions within 2 hours</li>
+          </ul>
+        </div>
+        <div class="recently-added">
+          <div class="ra-title">🆕 Recently Listed Products</div>
+          <div class="ra-list" id="ra-list">
+            <div class="ra-empty">No products listed yet. Be the first!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENDORS -->
+<section id="vendors">
+  <div class="container">
+    <div class="shead">
+      <div class="srow">
+        <div>
+          <div class="st">Marketplace</div>
+          <h2 class="sh2">Top Vendors</h2>
+          <p class="ssub">Trusted sellers, verified products, stellar reviews.</p>
+        </div>
+        <button class="btn btn-o" onclick="toast('Full directory coming soon!','info')">All Vendors →</button>
+      </div>
+    </div>
+    <div class="vgrid" id="vgrid"></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" style="background:var(--bg3)">
+  <div class="container">
+    <div class="shead" style="text-align:center;max-width:540px;margin:0 auto 36px">
+      <div class="st" style="justify-content:center">Why ShopRin</div>
+      <h2 class="sh2">Everything You Need, Nothing You Don't</h2>
+    </div>
+    <div class="fgrid" id="fgrid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testi">
+  <div class="container">
+    <div class="shead"><div class="st">Reviews</div><h2 class="sh2">What Shoppers Say</h2></div>
+    <div class="tgrid" id="tgrid"></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="nl" style="background:var(--bg3)">
+  <div class="container">
+    <div class="nlw">
+      <div class="nlbg">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=75" alt="Newsletter">
+        <div class="nlbg-ov"></div>
+      </div>
+      <div class="nlc">
+        <div>
+          <h2>Get Exclusive Deals First</h2>
+          <p>Flash sales, new arrivals and member-only discounts. No spam, ever.</p>
+        </div>
+        <div class="nlf">
+          <input type="email" id="nle" placeholder="Enter your email…">
+          <button class="btn btn-p" onclick="sub()">Subscribe →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container fi2">
+    <div class="fgrid2">
+      <div class="fb2">
+        <div class="logo">Shop<span>Rin</span></div>
+        <p>Nigeria's #1 multi-vendor marketplace. Phones, fashion, electronics, beauty, home and more. Quality you can trust, delivered to your door.</p>
+        <div class="fsoc">
+          <div class="fs" onclick="toast('Instagram coming!','info')">📸</div>
+          <div class="fs" onclick="toast('X coming!','info')">🐦</div>
+          <div class="fs" onclick="toast('Facebook coming!','info')">📘</div>
+          <div class="fs" onclick="toast('YouTube coming!','info')">▶️</div>
+          <div class="fs" onclick="toast('TikTok coming!','info')">🎵</div>
+        </div>
+      </div>
+      <div class="fc2"><h4>Shop</h4><ul>
+        <li><a href="#" onclick="gs('shop')">All Products</a></li>
+        <li><a href="#" onclick="gs('cats')">Categories</a></li>
+        <li><a href="#" onclick="gs('vendors')">Vendors</a></li>
+        <li><a href="#" onclick="gs('shop')">New Arrivals</a></li>
+        <li><a href="#" onclick="gs('shop')">Flash Deals</a></li>
+      </ul></div>
+      <div class="fc2"><h4>Account</h4><ul>
+        <li><a href="#" onclick="openAuth('login')">Sign In</a></li>
+        <li><a href="#" onclick="openAuth('register')">Register</a></li>
+        <li><a href="#" onclick="openCart()">My Cart</a></li>
+        <li><a href="#" onclick="openWL()">Wishlist</a></li>
+        <li><a href="#" onclick="toast('Order tracking coming!','info')">Track Order</a></li>
+      </ul></div>
+      <div class="fc2"><h4>Help</h4><ul>
+        <li><a href="#" onclick="toast('FAQ coming!','info')">FAQ</a></li>
+        <li><a href="#" onclick="toast('Shipping info coming!','info')">Shipping</a></li>
+        <li><a href="#" onclick="toast('Returns policy coming!','info')">Returns</a></li>
+        <li><a href="#" onclick="toast('Privacy policy coming!','info')">Privacy</a></li>
+        <li><a href="#" onclick="toast('Opening support…','info')">Contact Us</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2025 ShopRin. All rights reserved. Made with ❤️ in Lagos, Nigeria.</p>
+      <div class="pi">
+        <span class="pico">VISA</span><span class="pico">MCARD</span>
+        <span class="pico">PAYSTACK</span><span class="pico">FLUTTER</span>
+        <span class="pico">PAYPAL</span><span class="pico">USSD</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATS -->
+<button id="fcb" onclick="openCart()">🛒 Cart (<span id="fcc">0</span>)</button>
+<button id="sct" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- AUTH MODAL -->
+<div class="ov" id="auth-ov">
+  <div class="modal">
+    <div class="mhd"><h3 id="auth-title">Welcome Back</h3><button class="mx" onclick="closeOv('auth-ov')">✕</button></div>
+    <div class="mb2">
+      <div class="atabs">
+        <button class="atab act" id="lt" onclick="swAuth('login')">Sign In</button>
+        <button class="atab" id="rt" onclick="swAuth('register')">Create Account</button>
+      </div>
+      <div id="lf">
+        <div class="fg2"><label>Email</label><input type="email" id="le" placeholder="you@example.com"></div>
+        <div class="fg2"><label>Password</label><input type="password" id="lp" placeholder="••••••••"></div>
+        <div class="form-meta">
+          <label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" style="accent-color:var(--accent)"> Remember me</label>
+          <span class="fl" onclick="toast('Reset link sent!','info')">Forgot password?</span>
+        </div>
+        <button class="btn btn-p" style="width:100%" onclick="doLogin()">Sign In →</button>
+        <p class="form-switch">No account? <span class="fl" onclick="swAuth('register')">Create one</span></p>
+      </div>
+      <div id="rf" class="hidden">
+        <div class="two-col">
+          <div class="fg2"><label>First Name</label><input type="text" id="rfn" placeholder="John"></div>
+          <div class="fg2"><label>Last Name</label><input type="text" id="rln" placeholder="Doe"></div>
+        </div>
+        <div class="fg2"><label>Email</label><input type="email" id="re" placeholder="you@example.com"></div>
+        <div class="fg2"><label>Password</label><input type="password" id="rp" placeholder="Min 8 characters"></div>
+        <div class="fg2"><label>Account Type</label><select id="rtype"><option value="customer">Customer</option><option value="vendor">Vendor / Seller</option></select></div>
+        <label style="display:flex;align-items:flex-start;gap:6px;cursor:pointer;font-size:.77rem;color:var(--text2);margin-bottom:13px"><input type="checkbox" style="accent-color:var(--accent);margin-top:2px"> I agree to the <span class="fl" style="margin-left:3px">Terms and Privacy</span></label>
+        <button class="btn btn-p" style="width:100%" onclick="doReg()">Create Account →</button>
+        <p class="form-switch">Have account? <span class="fl" onclick="swAuth('login')">Sign in</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="ov" id="cart-ov">
+  <div class="modal" style="max-width:460px">
+    <div class="mhd"><h3>🛒 Your Cart</h3><button class="mx" onclick="closeOv('cart-ov')">✕</button></div>
+    <div class="mb2" id="cbody"></div>
+  </div>
+</div>
+
+<!-- WISHLIST MODAL -->
+<div class="ov" id="wl-ov">
+  <div class="modal" style="max-width:460px">
+    <div class="mhd"><h3>❤️ Wishlist</h3><button class="mx" onclick="closeOv('wl-ov')">✕</button></div>
+    <div class="mb2" id="wlbody"></div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="ov" id="pdm">
+  <div class="modal pd-modal">
+    <div class="mhd"><h3>Product Details</h3><button class="mx" onclick="closeOv('pdm')">✕</button></div>
+    <div class="mb2" id="pdbody"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="ov" id="co-ov">
+  <div class="modal" style="max-width:580px">
+    <div class="mhd"><h3>🛍 Checkout</h3><button class="mx" onclick="closeOv('co-ov')">✕</button></div>
+    <div class="mb2" id="cobody"></div>
+  </div>
+</div>
+
+<!-- SEARCH MODAL -->
+<div class="ov" id="sr-ov">
+  <div class="modal" style="max-width:560px">
+    <div class="mhd"><h3>🔍 Search Results</h3><button class="mx" onclick="closeOv('sr-ov')">✕</button></div>
+    <div class="mb2" id="srbody"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
