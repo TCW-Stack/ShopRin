@@ -351,14 +351,6 @@ const FEATURES = [
   { icon:'🌍', title:'Nationwide Shipping',  desc:'All 36 states + FCT with live order tracking.',         img:'https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&q=70' },
 ];
 
-const TESTIMONIALS = [
-  { text:"Got my iPhone 15 Pro sealed in box at ₦980K — same price as Apple Store online. Arrived in 3 hours. Unbelievable service!", author:'Amaka Obi',      loc:'Lagos · ★★★★★', avatar:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=70' },
-  { text:"Samsung S24 Ultra delivered to Abuja next morning. Verified original with Samsung warranty. ShopRin is my go-to for gadgets.", author:'David Chen',    loc:'Abuja · ★★★★★', avatar:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=70' },
-  { text:"Ordered Adire kaftan set, arrived perfectly packaged with a handwritten note from the vendor. Quality was beyond expectations!", author:'Fatima Suleiman', loc:'Kano · ★★★★★', avatar:'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&q=70' },
-  { text:"As a vendor I tripled my sales in 30 days. The analytics dashboard shows everything. ShopRin is the future of Nigerian e-commerce.", author:'Ngozi Eze', loc:'Enugu · ★★★★★', avatar:'https://images.unsplash.com/photo-1542323228966-9876df0c98cc?w=100&q=70' },
-  { text:"Nike Air Force 1s arrived same day I ordered. Original, fresh, with receipt. Better price than any store in Ibadan!", author:'Tunde Adeyemi',    loc:'Ibadan · ★★★★☆', avatar:'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&q=70' },
-  { text:"Indomie box of 40 arrived next morning to Port Harcourt. Every pack intact. Even cheaper than buying at market!", author:'Emmanuel Bello', loc:'Port Harcourt · ★★★★★', avatar:'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=70' },
-];
 
 // ─────────────────────────────────────────────
 // STATE
@@ -1000,20 +992,7 @@ function renderAll() {
       </div>
     </div>`).join('');
 
-  // Testimonials
-  document.getElementById('tgrid').innerHTML = TESTIMONIALS.map(t => `
-    <div class="tcard">
-      <div class="tq">"</div>
-      <p class="tt">${t.text}</p>
-      <div class="tau">
-        <div class="tav"><img src="${t.avatar}" alt="${t.author}" loading="lazy"></div>
-        <div>
-          <div class="tan">${t.author}</div>
-          <div class="tal" style="color:var(--gold)">${t.loc}</div>
-        </div>
-      </div>
-    </div>`).join('');
-
+  
   // Products
   applyFilter();
   renderRecentlyAdded();
